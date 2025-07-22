@@ -6,4 +6,6 @@ const currentDate = ref(new Date().toLocaleDateString('ru-RU'))
 
 <template>
   <p>{{ currentDate }}</p>
+  <p>{{ currentDate }}</p>
+  git add .
 </template>
