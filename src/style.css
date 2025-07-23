@@ -1,4 +1,16 @@
 :root {
+  --color-primary: #222222;
+  --color-btn: #008bfe;
+  --color-btn-active: #cceeff;
+  --color-bg: #f0f4f8;
+  --color-card-bg: #ffffff;
+  --font: 'Roboto', sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--color-primary);
+  background-color: var(--color-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
