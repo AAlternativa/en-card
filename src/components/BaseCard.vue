@@ -42,13 +42,13 @@ const toggleBtnUp = () => {
     >
       {{ cardWordRuValue }}
     </p>
-    <btn
+    <button
       v-if="isFlipped == true"
       class="card-btn"
       @click="toggleFlip"
     >
       Перевернуть
-    </btn>
+    </button>
     <div
       v-if="isFlipped == false && isBtnUp == true"
       class="btns-true-false"
