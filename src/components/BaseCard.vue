@@ -11,9 +11,19 @@ const {
   cardWordRuValue: String,
 })
 
+// состояние перевернуто/не перевернуто
 const isFlipped = ref(true)
 const toggleFlip = () => {
   isFlipped.value = !isFlipped.value
+}
+
+//состояние верно/неверно
+const isTrue = ref(true)
+
+//нажата кнопка или нет
+const isBtnUp = ref(true)
+const toggleBtnUp = () => {
+  isBtnUp.value = !isBtnUp.value
 }
 </script>
 
@@ -33,11 +43,36 @@ const toggleFlip = () => {
       {{ cardWordRuValue }}
     </p>
     <btn
+      v-if="isFlipped == true"
       class="card-btn"
       @click="toggleFlip"
     >
       Перевернуть
     </btn>
+    <div
+      v-if="isFlipped == false && isBtnUp == true"
+      class="btns-true-false"
+    >
+      <button
+        class="btn-true"
+        @click="((isTrue = true), toggleBtnUp())"
+      >
+        yes
+      </button>
+      <button
+        class="btn-true"
+        @click="((isTrue = false), toggleBtnUp())"
+      >
+        no
+      </button>
+    </div>
+    <div
+      v-if="isFlipped == false && isBtnUp == false"
+      class="card-result"
+    >
+      <p v-if="isTrue">Выучено</p>
+      <p v-if="!isTrue">Не выучено</p>
+    </div>
   </div>
 </template>
 
@@ -83,5 +118,29 @@ const toggleFlip = () => {
 .card-btn:hover {
   background-color: var(--color-btn);
   color: var(--color-card-bg);
+}
+
+.btn-true {
+  border: none;
+  font-size: 16px;
+  height: 30px;
+  width: 70px;
+  margin: 0 auto;
+  padding: auto;
+  background-color: var(--color-btn-active);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.btns-true-false {
+  display: flex;
+}
+
+.card-result {
+  display: flex;
+  margin: 0 auto;
+  padding: 0;
 }
 </style>

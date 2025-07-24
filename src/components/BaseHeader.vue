@@ -1,18 +1,11 @@
 <script setup>
-import IconHeart from '../icons/IconHeart.vue'
-
-const { heartValue = '100' } = defineProps({
-  heartValue: String,
-})
+import Score from './Score.vue'
 </script>
 
 <template>
   <div class="word-header">
     <span class="word-header__label">ЗАПОМНИ СЛОВО</span>
-    <div class="word-header__progress">
-      <span>{{ heartValue }}</span>
-      <IconHeart />
-    </div>
+    <Score heart-value="55" />
   </div>
 </template>
 
@@ -28,17 +21,5 @@ const { heartValue = '100' } = defineProps({
   font-weight: bold;
   font-size: 14px;
   color: var(--color-primary);
-}
-
-.word-header__progress {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  background: var(--color-btn-active);
-  min-width: 110px;
-  height: 48px;
-  border-radius: 24px;
-  padding: 0px 0px;
 }
 </style>

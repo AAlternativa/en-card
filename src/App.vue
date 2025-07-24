@@ -8,7 +8,7 @@ const currentDate = ref(new Date().toLocaleDateString('ru-RU'))
 </script>
 
 <template>
-  <BaseHeader heartValue="55" />
+  <BaseHeader />
   <div class="app">
     <Button>START</Button>
   </div>
