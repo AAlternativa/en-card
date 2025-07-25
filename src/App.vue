@@ -5,6 +5,15 @@ import BaseHeader from './components/BaseHeader.vue'
 import BaseCard from './components/BaseCard.vue'
 
 const currentDate = ref(new Date().toLocaleDateString('ru-RU'))
+
+const cards = ref([
+  {
+    word: 'apple',
+    translation: 'яблоко',
+    state: 'closed', // или 'opened'
+    status: 'pending', // или 'success', 'fail'
+  },
+])
 </script>
 
 <template>
@@ -15,8 +24,8 @@ const currentDate = ref(new Date().toLocaleDateString('ru-RU'))
 
   <BaseCard
     numberCardValue="1"
-    cardWordValue="dick"
-    cardWordRuValue="член"
+    :cardWordValue="cards[0].word"
+    :cardWordRuValue="cards[0].translation"
   />
 
   <p>{{ currentDate }}</p>
