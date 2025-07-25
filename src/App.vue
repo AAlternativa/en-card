@@ -10,8 +10,32 @@ const cards = ref([
   {
     word: 'apple',
     translation: 'яблоко',
-    state: 'closed', // или 'opened'
-    status: 'pending', // или 'success', 'fail'
+    state: 'closed',
+    status: 'pending',
+  },
+  {
+    word: 'dog',
+    translation: 'собака',
+    state: 'closed',
+    status: 'pending',
+  },
+  {
+    word: 'cat',
+    translation: 'кот',
+    state: 'closed',
+    status: 'pending',
+  },
+  {
+    word: 'house',
+    translation: 'дом',
+    state: 'closed',
+    status: 'pending',
+  },
+  {
+    word: 'house',
+    translation: 'дом',
+    state: 'closed',
+    status: 'pending',
   },
 ])
 </script>
@@ -22,11 +46,20 @@ const cards = ref([
     <Button>START</Button>
   </div>
 
-  <BaseCard
-    numberCardValue="1"
-    :cardWordValue="cards[0].word"
-    :cardWordRuValue="cards[0].translation"
-  />
+  <div class="cards">
+    <BaseCard
+      v-for="(card, index) in cards"
+      :key="index"
+      :numberCardValue="index + 1"
+      :cardWordValue="card.word"
+      :cardWordRuValue="card.translation"
+      :state="card.state"
+      :status="card.status"
+      @flip="card.state = 'opened'"
+      @answerYes="card.status = 'success'"
+      @answerNo="card.status = 'fail'"
+    />
+  </div>
 
   <p>{{ currentDate }}</p>
 </template>
@@ -37,5 +70,10 @@ const cards = ref([
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

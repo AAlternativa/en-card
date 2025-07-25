@@ -1,78 +1,78 @@
 <script setup>
-import { ref } from 'vue'
+const emit = defineEmits(['flip', 'answerYes', 'answerNo'])
 
 const {
   numberCardValue = 1,
   cardWordValue = 'Loading',
   cardWordRuValue = 'Загрузка',
+  state = 'closed',
+  status = 'pending',
 } = defineProps({
   numberCardValue: Number,
   cardWordValue: String,
   cardWordRuValue: String,
+  state: String,
+  status: String,
 })
-
-// состояние перевернуто/не перевернуто
-const isFlipped = ref(true)
-const toggleFlip = () => {
-  isFlipped.value = !isFlipped.value
-}
-
-//состояние верно/неверно
-const isTrue = ref(true)
-
-//нажата кнопка или нет
-const isBtnUp = ref(true)
-const toggleBtnUp = () => {
-  isBtnUp.value = !isBtnUp.value
-}
 </script>
 
 <template>
   <div class="base-card">
     <span class="card-index">{{ numberCardValue }}</span>
-    <p
-      v-show="isFlipped == true"
-      class="card-word"
-    >
-      {{ cardWordValue }}
-    </p>
-    <p
-      v-show="isFlipped == false"
-      class="card-word"
-    >
-      {{ cardWordRuValue }}
-    </p>
-    <button
-      v-if="isFlipped == true"
-      class="card-btn"
-      @click="toggleFlip"
-    >
-      Перевернуть
-    </button>
-    <div
-      v-if="isFlipped == false && isBtnUp == true"
-      class="btns-true-false"
-    >
+
+    <template v-if="state == 'closed'">
+      <p class="card-word">
+        {{ cardWordValue }}
+      </p>
       <button
-        class="btn-true"
-        @click="((isTrue = true), toggleBtnUp())"
+        class="card-btn"
+        @click="emit('flip')"
       >
-        yes
+        Перевернуть
       </button>
-      <button
-        class="btn-true"
-        @click="((isTrue = false), toggleBtnUp())"
-      >
-        no
-      </button>
-    </div>
-    <div
-      v-if="isFlipped == false && isBtnUp == false"
-      class="card-result"
-    >
-      <p v-if="isTrue">Выучено</p>
-      <p v-if="!isTrue">Не выучено</p>
-    </div>
+    </template>
+
+    <template v-if="state == 'opened' && status == 'pending'">
+      <p class="card-word">
+        {{ cardWordRuValue }}
+      </p>
+
+      <div class="btns-true-false">
+        <button
+          class="btn-true"
+          @click="emit('answerYes')"
+        >
+          yes
+        </button>
+
+        <button
+          class="btn-true"
+          @click="emit('answerNo')"
+        >
+          no
+        </button>
+      </div>
+    </template>
+
+    <template v-if="state == 'opened' && status == 'success'">
+      <p class="card-word">
+        {{ cardWordRuValue }}
+      </p>
+      <div class="card-result">
+        <span>✔️</span>
+        <p>Завершено</p>
+      </div>
+    </template>
+
+    <template v-if="state == 'opened' && status == 'fail'">
+      <p class="card-word">
+        {{ cardWordRuValue }}
+      </p>
+      <div class="card-result">
+        <span>❌</span>
+        <p>Завершено</p>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -141,7 +141,7 @@ const toggleBtnUp = () => {
 
 .card-result {
   display: flex;
-  margin: 0 auto;
-  padding: 0;
+  justify-content: center;
+  align-items: center;
 }
 </style>
