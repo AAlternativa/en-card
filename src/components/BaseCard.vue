@@ -88,6 +88,7 @@ const toggleBtnUp = () => {
   justify-content: space-between;
   box-sizing: border-box;
   padding: 20px;
+  border: none;
 }
 
 .card-index {
