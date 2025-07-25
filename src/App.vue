@@ -1,67 +1,58 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import Button from './components/BaseButton.vue'
 import BaseHeader from './components/BaseHeader.vue'
 import BaseCard from './components/BaseCard.vue'
 
-const currentDate = ref(new Date().toLocaleDateString('ru-RU'))
+const cards = ref([])
 
-const cards = ref([
-  {
-    word: 'apple',
-    translation: 'яблоко',
+const isShou = ref(true)
+const toggleShou = () => {
+  isShou.value = !isShou.value
+}
+
+onMounted(async () => {
+  const res = await fetch('http://localhost:8080/api/random-words')
+  const data = await res.json()
+
+  cards.value = data.map((item) => ({
+    word: item.word,
+    translation: item.translation,
     state: 'closed',
     status: 'pending',
-  },
-  {
-    word: 'dog',
-    translation: 'собака',
-    state: 'closed',
-    status: 'pending',
-  },
-  {
-    word: 'cat',
-    translation: 'кот',
-    state: 'closed',
-    status: 'pending',
-  },
-  {
-    word: 'house',
-    translation: 'дом',
-    state: 'closed',
-    status: 'pending',
-  },
-  {
-    word: 'house',
-    translation: 'дом',
-    state: 'closed',
-    status: 'pending',
-  },
-])
+  }))
+})
 </script>
 
 <template>
   <BaseHeader />
-  <div class="app">
-    <Button>START</Button>
+
+  <!-- Экран с кнопкой START -->
+  <div
+    v-if="isShou"
+    class="app"
+  >
+    <Button @click="toggleShou">START</Button>
   </div>
 
-  <div class="cards">
+  <!-- Карточки — когда isShou === false -->
+  <div
+    v-else
+    class="cards"
+  >
     <BaseCard
       v-for="(card, index) in cards"
       :key="index"
-      :numberCardValue="index + 1"
-      :cardWordValue="card.word"
-      :cardWordRuValue="card.translation"
+      :number-card-value="index + 1"
+      :card-word-value="card.word"
+      :card-word-ru-value="card.translation"
       :state="card.state"
       :status="card.status"
       @flip="card.state = 'opened'"
-      @answerYes="card.status = 'success'"
-      @answerNo="card.status = 'fail'"
+      @answer-yes="card.status = 'success'"
+      @answer-no="card.status = 'fail'"
     />
   </div>
-
-  <p>{{ currentDate }}</p>
 </template>
 
 <style scoped>
@@ -74,6 +65,9 @@ const cards = ref([
 
 .cards {
   display: flex;
+  gap: 30px;
   justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 30px;
 }
 </style>

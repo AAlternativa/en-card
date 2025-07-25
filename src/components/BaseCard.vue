@@ -88,7 +88,6 @@ const {
   justify-content: space-between;
   box-sizing: border-box;
   padding: 20px;
-  border: none;
 }
 
 .card-index {
@@ -114,6 +113,7 @@ const {
   justify-content: center;
   align-items: center;
   border-radius: 15px;
+  border: none;
 }
 
 .card-btn:hover {
@@ -133,6 +133,11 @@ const {
   justify-content: center;
   align-items: center;
   border-radius: 15px;
+}
+
+.btn-true:hover {
+  background-color: var(--color-btn);
+  color: var(--color-card-bg);
 }
 
 .btns-true-false {
