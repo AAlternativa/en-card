@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "vue": "^3.5.17"
@@ -16,6 +18,7 @@
     "@vue/eslint-config-prettier": "^10.2.0",
     "eslint": "^9.31.0",
     "eslint-plugin-vue": "^10.3.0",
+    "gh-pages": "^6.3.0",
     "vite": "^7.0.4"
   }
 }
