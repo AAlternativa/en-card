@@ -1,13 +1,11 @@
 <script setup>
-import { ref } from 'vue'
 import Score from './Score.vue'
-const score = ref(0)
 </script>
 
 <template>
   <div class="word-header">
     <span class="word-header__label">ЗАПОМНИ СЛОВО</span>
-    <Score :heart-value="score" />
+    <Score />
   </div>
 </template>
 
