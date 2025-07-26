@@ -1,0 +1,423 @@
+[
+  { "word": "ability", "translation": "способность" },
+  {
+    "word": "achievement",
+    "translation": "достижение"
+  },
+  {
+    "word": "acquire",
+    "translation": "приобретать"
+  },
+  {
+    "word": "adequate",
+    "translation": "адекватный"
+  },
+  {
+    "word": "administration",
+    "translation": "администрация"
+  },
+  {
+    "word": "advantage",
+    "translation": "преимущество"
+  },
+  {
+    "word": "adventure",
+    "translation": "приключение"
+  },
+  {
+    "word": "analysis",
+    "translation": "анализ"
+  },
+  {
+    "word": "annual",
+    "translation": "ежегодный"
+  },
+  {
+    "word": "apparent",
+    "translation": "очевидный"
+  },
+  {
+    "word": "application",
+    "translation": "приложение"
+  },
+  {
+    "word": "appropriate",
+    "translation": "уместный"
+  },
+  {
+    "word": "architecture",
+    "translation": "архитектура"
+  },
+  {
+    "word": "argument",
+    "translation": "аргумент"
+  },
+  {
+    "word": "arrival",
+    "translation": "прибытие"
+  },
+  {
+    "word": "article",
+    "translation": "статья"
+  },
+  {
+    "word": "assessment",
+    "translation": "оценка"
+  },
+  {
+    "word": "attention",
+    "translation": "внимание"
+  },
+  {
+    "word": "attraction",
+    "translation": "достопримечательность"
+  },
+  {
+    "word": "available",
+    "translation": "доступный"
+  },
+  {
+    "word": "background",
+    "translation": "фон"
+  },
+  {
+    "word": "balance",
+    "translation": "баланс"
+  },
+  {
+    "word": "behavior",
+    "translation": "поведение"
+  },
+  {
+    "word": "benefit",
+    "translation": "выгода"
+  },
+  {
+    "word": "candidate",
+    "translation": "кандидат"
+  },
+  {
+    "word": "capacity",
+    "translation": "вместимость"
+  },
+  {
+    "word": "career",
+    "translation": "карьера"
+  },
+  {
+    "word": "category",
+    "translation": "категория"
+  },
+  {
+    "word": "challenge",
+    "translation": "вызов"
+  },
+  {
+    "word": "characteristic",
+    "translation": "характеристика"
+  },
+  {
+    "word": "circumstance",
+    "translation": "обстоятельство"
+  },
+  {
+    "word": "colleague",
+    "translation": "коллега"
+  },
+  {
+    "word": "commercial",
+    "translation": "коммерческий"
+  },
+  {
+    "word": "communication",
+    "translation": "общение"
+  },
+  {
+    "word": "community",
+    "translation": "сообщество"
+  },
+  {
+    "word": "competition",
+    "translation": "соревнование"
+  },
+  {
+    "word": "complaint",
+    "translation": "жалоба"
+  },
+  {
+    "word": "component",
+    "translation": "компонент"
+  },
+  {
+    "word": "concept",
+    "translation": "понятие"
+  },
+  {
+    "word": "concern",
+    "translation": "беспокойство"
+  },
+  {
+    "word": "condition",
+    "translation": "состояние"
+  },
+  {
+    "word": "conference",
+    "translation": "конференция"
+  },
+  {
+    "word": "confidence",
+    "translation": "уверенность"
+  },
+  {
+    "word": "conflict",
+    "translation": "конфликт"
+  },
+  {
+    "word": "connection",
+    "translation": "связь"
+  },
+  {
+    "word": "consequence",
+    "translation": "последствие"
+  },
+  {
+    "word": "construction",
+    "translation": "строительство"
+  },
+  {
+    "word": "consumer",
+    "translation": "потребитель"
+  },
+  {
+    "word": "contact",
+    "translation": "контакт"
+  },
+  {
+    "word": "context",
+    "translation": "контекст"
+  },
+  {
+    "word": "contribution",
+    "translation": "вклад"
+  },
+  {
+    "word": "conversation",
+    "translation": "разговор"
+  },
+  {
+    "word": "cooperation",
+    "translation": "сотрудничество"
+  },
+  {
+    "word": "creative",
+    "translation": "творческий"
+  },
+  {
+    "word": "criticism",
+    "translation": "критика"
+  },
+  {
+    "word": "culture",
+    "translation": "культура"
+  },
+  {
+    "word": "damage",
+    "translation": "повреждение"
+  },
+  {
+    "word": "decision",
+    "translation": "решение"
+  },
+  {
+    "word": "definition",
+    "translation": "определение"
+  },
+  {
+    "word": "delivery",
+    "translation": "доставка"
+  },
+  {
+    "word": "demonstrate",
+    "translation": "демонстрировать"
+  },
+  {
+    "word": "dependent",
+    "translation": "зависимый"
+  },
+  {
+    "word": "description",
+    "translation": "описание"
+  },
+  {
+    "word": "design",
+    "translation": "дизайн"
+  },
+  {
+    "word": "desire",
+    "translation": "желание"
+  },
+  {
+    "word": "development",
+    "translation": "развитие"
+  },
+  {
+    "word": "difference",
+    "translation": "различие"
+  },
+  {
+    "word": "difficulty",
+    "translation": "трудность"
+  },
+  {
+    "word": "direction",
+    "translation": "направление"
+  },
+  {
+    "word": "disaster",
+    "translation": "катастрофа"
+  },
+  {
+    "word": "discussion",
+    "translation": "обсуждение"
+  },
+  {
+    "word": "distance",
+    "translation": "расстояние"
+  },
+  {
+    "word": "efficiency",
+    "translation": "эффективность"
+  },
+  {
+    "word": "effort",
+    "translation": "усилие"
+  },
+  {
+    "word": "emphasis",
+    "translation": "акцент"
+  },
+  {
+    "word": "employee",
+    "translation": "сотрудник"
+  },
+  {
+    "word": "encourage",
+    "translation": "поощрять"
+  },
+  {
+    "word": "environment",
+    "translation": "окружающая среда"
+  },
+  {
+    "word": "equipment",
+    "translation": "оборудование"
+  },
+  {
+    "word": "error",
+    "translation": "ошибка"
+  },
+  {
+    "word": "establish",
+    "translation": "установить"
+  },
+  {
+    "word": "evaluation",
+    "translation": "оценка"
+  },
+  {
+    "word": "evidence",
+    "translation": "доказательство"
+  },
+  {
+    "word": "exchange",
+    "translation": "обмен"
+  },
+  {
+    "word": "experience",
+    "translation": "опыт"
+  },
+  {
+    "word": "expert",
+    "translation": "эксперт"
+  },
+  {
+    "word": "factor",
+    "translation": "фактор"
+  },
+  {
+    "word": "feature",
+    "translation": "особенность"
+  },
+  {
+    "word": "final",
+    "translation": "финальный"
+  },
+  {
+    "word": "focus",
+    "translation": "фокус"
+  },
+  {
+    "word": "freedom",
+    "translation": "свобода"
+  },
+  {
+    "word": "function",
+    "translation": "функция"
+  },
+  {
+    "word": "goal",
+    "translation": "цель"
+  },
+  {
+    "word": "growth",
+    "translation": "рост"
+  },
+  {
+    "word": "guidance",
+    "translation": "руководство"
+  },
+  {
+    "word": "importance",
+    "translation": "важность"
+  },
+  {
+    "word": "impression",
+    "translation": "впечатление"
+  },
+  {
+    "word": "improvement",
+    "translation": "улучшение"
+  },
+  {
+    "word": "independent",
+    "translation": "независимый"
+  },
+  {
+    "word": "influence",
+    "translation": "влияние"
+  },
+  {
+    "word": "information",
+    "translation": "информация"
+  },
+  {
+    "word": "initiative",
+    "translation": "инициатива"
+  },
+  {
+    "word": "injury",
+    "translation": "травма"
+  },
+  {
+    "word": "instruction",
+    "translation": "инструкция"
+  },
+  {
+    "word": "intention",
+    "translation": "намерение"
+  },
+  {
+    "word": "interest",
+    "translation": "интерес"
+  }
+]

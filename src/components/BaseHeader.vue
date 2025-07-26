@@ -11,10 +11,15 @@ import Score from './Score.vue'
 
 <style scoped>
 .word-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 10px 16px;
+  margin: 0;
 }
 
 .word-header__label {

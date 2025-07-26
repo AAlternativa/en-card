@@ -3,6 +3,7 @@ import { onMounted, provide, ref } from 'vue'
 import BaseButton from './components/BaseButton.vue'
 import BaseHeader from './components/BaseHeader.vue'
 import BaseCard from './components/BaseCard.vue'
+import wordList from './data/words.json'
 
 const cards = ref([])
 
@@ -21,10 +22,17 @@ function handleAnswer(card, isCorrect) {
 provide('scoreKey', score)
 
 async function loadCards() {
-  const res = await fetch('http://localhost:8080/api/random-words')
-  const data = await res.json()
+  // const res = await fetch('http://localhost:8080/api/random-words')
+  // const data = await res.json()
+  // cards.value = data.map((item) => ({
+  //   word: item.word,
+  //   translation: item.translation,
+  //   state: 'closed',
+  //   status: 'pending',
+  // }))
 
-  cards.value = data.map((item) => ({
+  const shuffled = [...wordList].sort(() => Math.random() - 0.5)
+  cards.value = shuffled.slice(0, 50).map((item) => ({
     word: item.word,
     translation: item.translation,
     state: 'closed',
