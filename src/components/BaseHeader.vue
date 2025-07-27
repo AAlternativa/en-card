@@ -1,10 +1,15 @@
 <script setup>
 import Score from './Score.vue'
+
+const { selectedLevel } = defineProps({
+  selectedLevel: String,
+})
 </script>
 
 <template>
   <div class="word-header">
     <span class="word-header__label">ЗАПОМНИ СЛОВО</span>
+    {{ selectedLevel.toUpperCase() }}
     <Score />
   </div>
 </template>

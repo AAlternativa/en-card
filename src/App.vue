@@ -1,9 +1,13 @@
 <script setup>
-import { onMounted, provide, ref } from 'vue'
+import { provide, ref } from 'vue'
 import BaseButton from './components/BaseButton.vue'
 import BaseHeader from './components/BaseHeader.vue'
 import BaseCard from './components/BaseCard.vue'
-import wordList from './data/words.json'
+
+import wordListB1 from './data/b1-words.json'
+import wordListB2 from './data/b2-words.json'
+import wordListA2 from './data/a2-words.json'
+import wordListC1 from './data/c1-words.json'
 
 const cards = ref([])
 
@@ -14,35 +18,38 @@ const toggleShou = () => {
 
 const score = ref(0)
 
+const wordMap = {
+  a2: wordListA2,
+  b1: wordListB1,
+  b2: wordListB2,
+  c1: wordListC1,
+}
+
+const selectedLevel = ref('B1')
+
+function selectLevel(level) {
+  selectedLevel.value = level
+  loadCards(level)
+}
+
 function handleAnswer(card, isCorrect) {
   card.status = isCorrect ? 'success' : 'fail'
-  score.value += isCorrect ? 10 : -4
+  score.value += isCorrect ? 1 : 0
 }
 
 provide('scoreKey', score)
 
-async function loadCards() {
-  // const res = await fetch('http://localhost:8080/api/random-words')
-  // const data = await res.json()
-  // cards.value = data.map((item) => ({
-  //   word: item.word,
-  //   translation: item.translation,
-  //   state: 'closed',
-  //   status: 'pending',
-  // }))
+async function loadCards(level) {
+  const wordList = wordMap[level]
 
   const shuffled = [...wordList].sort(() => Math.random() - 0.5)
-  cards.value = shuffled.slice(0, 50).map((item) => ({
+  cards.value = shuffled.slice(0, 20).map((item) => ({
     word: item.word,
     translation: item.translation,
     state: 'closed',
     status: 'pending',
   }))
 }
-
-onMounted(async () => {
-  loadCards()
-})
 
 async function restartGame() {
   score.value = 0
@@ -53,13 +60,42 @@ async function restartGame() {
 </script>
 
 <template>
-  <BaseHeader />
+  <BaseHeader :selected-level="selectedLevel" />
 
   <div
     v-if="isShou"
     class="app"
   >
+    <!-- {{ selectedLevel }} -->
+
     <BaseButton @click="toggleShou">START</BaseButton>
+    <div class="level-switcher">
+      <button
+        :class="['level-button', { active: selectedLevel === 'a2' }]"
+        @click="selectLevel('a2')"
+      >
+        a2
+      </button>
+
+      <button
+        :class="['level-button', { active: selectedLevel === 'b1' }]"
+        @click="selectLevel('b1')"
+      >
+        b1
+      </button>
+      <button
+        :class="['level-button', { active: selectedLevel === 'b2' }]"
+        @click="selectLevel('b2')"
+      >
+        b2
+      </button>
+      <button
+        :class="['level-button', { active: selectedLevel === 'c1' }]"
+        @click="selectLevel('c1')"
+      >
+        c1
+      </button>
+    </div>
   </div>
 
   <div v-else>
@@ -90,8 +126,10 @@ async function restartGame() {
 .app {
   height: 80vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 50px;
 }
 
 .cards {
@@ -108,5 +146,24 @@ async function restartGame() {
   justify-content: center;
   align-items: center;
   margin-bottom: 100px;
+}
+
+.level-switcher {
+  display: flex;
+  gap: 5px;
+}
+
+.level-button {
+  padding: 10px 30px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.level-button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
 }
 </style>
