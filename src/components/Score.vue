@@ -7,7 +7,7 @@ const heartValue = inject('scoreKey')
 
 <template>
   <div class="word-header__progress">
-    <span>{{ heartValue }}</span>
+    <span>100/{{ heartValue }}</span>
     <IconHeart />
   </div>
 </template>

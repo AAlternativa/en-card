@@ -1,0 +1,426 @@
+[
+  {
+    "word": "acknowledge",
+    "translation": "признавать"
+  },
+  {
+    "word": "allocate",
+    "translation": "распределять"
+  },
+  {
+    "word": "anticipate",
+    "translation": "предвидеть"
+  },
+  {
+    "word": "apparent",
+    "translation": "очевидный"
+  },
+  {
+    "word": "approach",
+    "translation": "подход"
+  },
+  {
+    "word": "appropriate",
+    "translation": "подходящий"
+  },
+  {
+    "word": "assess",
+    "translation": "оценивать"
+  },
+  {
+    "word": "assign",
+    "translation": "назначать"
+  },
+  {
+    "word": "assume",
+    "translation": "предполагать"
+  },
+  {
+    "word": "attempt",
+    "translation": "попытка"
+  },
+  {
+    "word": "authority",
+    "translation": "власть"
+  },
+  {
+    "word": "aware",
+    "translation": "осведомлённый"
+  },
+  {
+    "word": "benefit",
+    "translation": "выгода"
+  },
+  {
+    "word": "capable",
+    "translation": "способный"
+  },
+  {
+    "word": "capacity",
+    "translation": "вместимость"
+  },
+  {
+    "word": "challenge",
+    "translation": "вызов"
+  },
+  {
+    "word": "circumstance",
+    "translation": "обстоятельство"
+  },
+  {
+    "word": "collapse",
+    "translation": "обрушение"
+  },
+  {
+    "word": "colleague",
+    "translation": "коллега"
+  },
+  {
+    "word": "comment",
+    "translation": "комментарий"
+  },
+  {
+    "word": "commitment",
+    "translation": "обязательство"
+  },
+  {
+    "word": "complex",
+    "translation": "сложный"
+  },
+  {
+    "word": "component",
+    "translation": "компонент"
+  },
+  {
+    "word": "concentrate",
+    "translation": "сосредоточиться"
+  },
+  {
+    "word": "concern",
+    "translation": "беспокойство"
+  },
+  {
+    "word": "conclude",
+    "translation": "делать вывод"
+  },
+  {
+    "word": "conduct",
+    "translation": "проводить"
+  },
+  {
+    "word": "confirm",
+    "translation": "подтверждать"
+  },
+  {
+    "word": "conflict",
+    "translation": "конфликт"
+  },
+  {
+    "word": "consequence",
+    "translation": "последствие"
+  },
+  {
+    "word": "considerable",
+    "translation": "значительный"
+  },
+  {
+    "word": "constant",
+    "translation": "постоянный"
+  },
+  {
+    "word": "consume",
+    "translation": "потреблять"
+  },
+  {
+    "word": "contribute",
+    "translation": "вносить вклад"
+  },
+  {
+    "word": "convert",
+    "translation": "преобразовывать"
+  },
+  {
+    "word": "convince",
+    "translation": "убеждать"
+  },
+  {
+    "word": "core",
+    "translation": "ядро"
+  },
+  {
+    "word": "corporate",
+    "translation": "корпоративный"
+  },
+  {
+    "word": "criteria",
+    "translation": "критерии"
+  },
+  {
+    "word": "crucial",
+    "translation": "ключевой"
+  },
+  {
+    "word": "debate",
+    "translation": "дебаты"
+  },
+  {
+    "word": "decline",
+    "translation": "снижение"
+  },
+  {
+    "word": "dedicate",
+    "translation": "посвящать"
+  },
+  {
+    "word": "define",
+    "translation": "определять"
+  },
+  {
+    "word": "demonstrate",
+    "translation": "демонстрировать"
+  },
+  {
+    "word": "deny",
+    "translation": "отрицать"
+  },
+  {
+    "word": "derive",
+    "translation": "получать"
+  },
+  {
+    "word": "despite",
+    "translation": "несмотря на"
+  },
+  {
+    "word": "dimension",
+    "translation": "размер"
+  },
+  {
+    "word": "distinct",
+    "translation": "отчетливый"
+  },
+  {
+    "word": "distribution",
+    "translation": "распределение"
+  },
+  {
+    "word": "diverse",
+    "translation": "разнообразный"
+  },
+  {
+    "word": "dominate",
+    "translation": "доминировать"
+  },
+  {
+    "word": "emerge",
+    "translation": "возникать"
+  },
+  {
+    "word": "emphasis",
+    "translation": "акцент"
+  },
+  {
+    "word": "enable",
+    "translation": "позволять"
+  },
+  {
+    "word": "encounter",
+    "translation": "сталкиваться"
+  },
+  {
+    "word": "enhance",
+    "translation": "усиливать"
+  },
+  {
+    "word": "ensure",
+    "translation": "обеспечивать"
+  },
+  {
+    "word": "equivalent",
+    "translation": "эквивалент"
+  },
+  {
+    "word": "establish",
+    "translation": "устанавливать"
+  },
+  {
+    "word": "estimate",
+    "translation": "оценивать"
+  },
+  {
+    "word": "evaluate",
+    "translation": "оценивать"
+  },
+  {
+    "word": "evident",
+    "translation": "очевидный"
+  },
+  {
+    "word": "exclude",
+    "translation": "исключать"
+  },
+  {
+    "word": "exhibit",
+    "translation": "выставлять"
+  },
+  {
+    "word": "expand",
+    "translation": "расширять"
+  },
+  {
+    "word": "expose",
+    "translation": "разоблачать"
+  },
+  {
+    "word": "external",
+    "translation": "внешний"
+  },
+  {
+    "word": "factor",
+    "translation": "фактор"
+  },
+  {
+    "word": "feature",
+    "translation": "особенность"
+  },
+  {
+    "word": "focus",
+    "translation": "фокус"
+  },
+  {
+    "word": "fundamental",
+    "translation": "фундаментальный"
+  },
+  {
+    "word": "generate",
+    "translation": "производить"
+  },
+  {
+    "word": "global",
+    "translation": "глобальный"
+  },
+  {
+    "word": "guarantee",
+    "translation": "гарантировать"
+  },
+  {
+    "word": "highlight",
+    "translation": "подчёркивать"
+  },
+  {
+    "word": "hypothesis",
+    "translation": "гипотеза"
+  },
+  {
+    "word": "identify",
+    "translation": "определять"
+  },
+  {
+    "word": "illustrate",
+    "translation": "иллюстрировать"
+  },
+  {
+    "word": "impact",
+    "translation": "влияние"
+  },
+  {
+    "word": "implement",
+    "translation": "осуществлять"
+  },
+  {
+    "word": "imply",
+    "translation": "подразумевать"
+  },
+  {
+    "word": "initial",
+    "translation": "начальный"
+  },
+  {
+    "word": "insight",
+    "translation": "понимание"
+  },
+  {
+    "word": "instance",
+    "translation": "пример"
+  },
+  {
+    "word": "institute",
+    "translation": "учреждение"
+  },
+  {
+    "word": "integrate",
+    "translation": "интегрировать"
+  },
+  {
+    "word": "interpret",
+    "translation": "интерпретировать"
+  },
+  {
+    "word": "invest",
+    "translation": "инвестировать"
+  },
+  {
+    "word": "issue",
+    "translation": "вопрос"
+  },
+  {
+    "word": "justify",
+    "translation": "оправдывать"
+  },
+  {
+    "word": "maintain",
+    "translation": "поддерживать"
+  },
+  {
+    "word": "major",
+    "translation": "основной"
+  },
+  {
+    "word": "mechanism",
+    "translation": "механизм"
+  },
+  {
+    "word": "modify",
+    "translation": "модифицировать"
+  },
+  {
+    "word": "monitor",
+    "translation": "контролировать"
+  },
+  {
+    "word": "motivate",
+    "translation": "мотивировать"
+  },
+  {
+    "word": "neglect",
+    "translation": "пренебрегать"
+  },
+  {
+    "word": "obtain",
+    "translation": "получать"
+  },
+  {
+    "word": "occur",
+    "translation": "происходить"
+  },
+  {
+    "word": "outcome",
+    "translation": "результат"
+  },
+  {
+    "word": "overall",
+    "translation": "в целом"
+  },
+  {
+    "word": "participate",
+    "translation": "участвовать"
+  },
+  {
+    "word": "perceive",
+    "translation": "воспринимать"
+  },
+  {
+    "word": "policy",
+    "translation": "политика"
+  }
+]
