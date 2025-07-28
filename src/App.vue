@@ -1,5 +1,5 @@
 <script setup>
-import { provide, ref } from 'vue'
+import { computed, provide, ref } from 'vue'
 import BaseButton from './components/BaseButton.vue'
 import BaseHeader from './components/BaseHeader.vue'
 import BaseCard from './components/BaseCard.vue'
@@ -9,8 +9,6 @@ import wordListB2 from './data/b2-words.json'
 import wordListA2 from './data/a2-words.json'
 import wordListC1 from './data/c1-words.json'
 
-const cards = ref([])
-
 const isShou = ref(true)
 const toggleShou = () => {
   isShou.value = !isShou.value
@@ -19,17 +17,32 @@ const toggleShou = () => {
 const score = ref(0)
 
 const wordMap = {
-  a2: wordListA2,
-  b1: wordListB1,
-  b2: wordListB2,
-  c1: wordListC1,
+  A2: wordListA2,
+  B1: wordListB1,
+  B2: wordListB2,
+  C1: wordListC1,
 }
 
 const selectedLevel = ref('B1')
 
+const remainingWords = ref([]) // слова, которые ещё не выучены
+const cards = ref([])
+
 function selectLevel(level) {
-  selectedLevel.value = level
-  loadCards(level)
+  selectedLevel.value = level.toUpperCase()
+  // loadCards(level)
+}
+
+function startGame() {
+  const level = selectedLevel.value
+  remainingWords.value = wordMap[level].map((item) => ({
+    word: item.word,
+    translation: item.translation,
+    state: 'closed',
+    status: 'pending',
+  }))
+  console.log('📦 remainingWords:', remainingWords.value)
+  loadCards()
 }
 
 function handleAnswer(card, isCorrect) {
@@ -37,26 +50,48 @@ function handleAnswer(card, isCorrect) {
   score.value += isCorrect ? 1 : 0
 }
 
-provide('scoreKey', score)
+// async function loadCards(level) {
+//   const wordList = wordMap[level]
 
-async function loadCards(level) {
-  const wordList = wordMap[level]
+//   const shuffled = [...wordList].sort(() => Math.random() - 0.5)
+//   cards.value = shuffled.slice(0, 20).map((item) => ({
+//     word: item.word,
+//     translation: item.translation,
+//     state: 'closed',
+//     status: 'pending',
+//   }))
+// }
 
-  const shuffled = [...wordList].sort(() => Math.random() - 0.5)
-  cards.value = shuffled.slice(0, 20).map((item) => ({
-    word: item.word,
-    translation: item.translation,
-    state: 'closed',
-    status: 'pending',
-  }))
+async function loadCards() {
+  const shuffled = [...remainingWords.value].sort(() => Math.random() - 0.5)
+  cards.value = shuffled.slice(0, 20)
+}
+
+async function learnMore() {
+  remainingWords.value = remainingWords.value.filter(
+    (item) => item.status !== 'success'
+  )
+  remainingWords.value.forEach((card) => {
+    card.status = 'pending'
+    card.state = 'closed'
+  })
+  loadCards()
 }
 
 async function restartGame() {
   score.value = 0
   isShou.value = true
-
-  await loadCards()
+  await loadCards(selectedLevel.value.toLowerCase())
 }
+
+const learnedCount = computed(() => {
+  return (
+    wordMap[selectedLevel.value].length -
+    remainingWords.value.filter((card) => card.status !== 'success').length
+  )
+})
+
+provide('scoreKey', score)
 </script>
 
 <template>
@@ -68,29 +103,39 @@ async function restartGame() {
   >
     <!-- {{ selectedLevel }} -->
 
-    <BaseButton @click="toggleShou">START</BaseButton>
+    <BaseButton
+      @click="
+        () => {
+          toggleShou()
+          startGame()
+        }
+      "
+    >
+      START
+    </BaseButton>
+
     <div class="level-switcher">
       <button
-        :class="['level-button', { active: selectedLevel === 'a2' }]"
+        :class="['level-button', { active: selectedLevel === 'A2' }]"
         @click="selectLevel('a2')"
       >
         a2
       </button>
 
       <button
-        :class="['level-button', { active: selectedLevel === 'b1' }]"
+        :class="['level-button', { active: selectedLevel === 'B1' }]"
         @click="selectLevel('b1')"
       >
         b1
       </button>
       <button
-        :class="['level-button', { active: selectedLevel === 'b2' }]"
+        :class="['level-button', { active: selectedLevel === 'B2' }]"
         @click="selectLevel('b2')"
       >
         b2
       </button>
       <button
-        :class="['level-button', { active: selectedLevel === 'c1' }]"
+        :class="['level-button', { active: selectedLevel === 'C1' }]"
         @click="selectLevel('c1')"
       >
         c1
@@ -113,13 +158,16 @@ async function restartGame() {
         @answer-no="() => handleAnswer(card, false)"
       />
     </div>
-    <div
-      class="button-restart"
-      @click="restartGame"
-    >
-      <BaseButton>Начать заново</BaseButton>
+    <div class="button-restart">
+      <BaseButton @click="restartGame">Начать заново</BaseButton>
+      <BaseButton
+        v-if="cards.every((card) => card.status !== 'pending')"
+        @click="learnMore"
+        >УЧИТЬ ДАЛЬШЕ</BaseButton
+      >
     </div>
   </div>
+  <p>Выучено: {{ learnedCount }}</p>
 </template>
 
 <style scoped>
