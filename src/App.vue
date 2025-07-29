@@ -8,6 +8,7 @@ import wordListB1 from './data/b1-words.json'
 import wordListB2 from './data/b2-words.json'
 import wordListA2 from './data/a2-words.json'
 import wordListC1 from './data/c1-words.json'
+import IT from './data/ITwords.json'
 
 const isShou = ref(true)
 const toggleShou = () => {
@@ -21,9 +22,10 @@ const wordMap = {
   B1: wordListB1,
   B2: wordListB2,
   C1: wordListC1,
+  IT: IT,
 }
 
-const selectedLevel = ref('B1')
+const selectedLevel = ref('IT')
 
 const remainingWords = ref([]) // слова, которые ещё не выучены
 const cards = ref([])
@@ -50,18 +52,6 @@ function handleAnswer(card, isCorrect) {
   score.value += isCorrect ? 1 : 0
 }
 
-// async function loadCards(level) {
-//   const wordList = wordMap[level]
-
-//   const shuffled = [...wordList].sort(() => Math.random() - 0.5)
-//   cards.value = shuffled.slice(0, 20).map((item) => ({
-//     word: item.word,
-//     translation: item.translation,
-//     state: 'closed',
-//     status: 'pending',
-//   }))
-// }
-
 async function loadCards() {
   const shuffled = [...remainingWords.value].sort(() => Math.random() - 0.5)
   cards.value = shuffled.slice(0, 20)
@@ -84,10 +74,17 @@ async function restartGame() {
   await loadCards(selectedLevel.value.toLowerCase())
 }
 
-const learnedCount = computed(() => {
+// const learnedCount = computed(() => {
+//   return (
+//     wordMap[selectedLevel.value].length -
+//     remainingWords.value.filter((card) => card.status !== 'success').length
+//   )
+// })
+
+const isGameCompleted = computed(() => {
   return (
-    wordMap[selectedLevel.value].length -
-    remainingWords.value.filter((card) => card.status !== 'success').length
+    remainingWords.value.length > 0 &&
+    remainingWords.value.every((card) => card.status === 'success')
   )
 })
 
@@ -140,11 +137,20 @@ provide('scoreKey', score)
       >
         c1
       </button>
+      <button
+        :class="['level-button', { active: selectedLevel === 'IT' }]"
+        @click="selectLevel('IT')"
+      >
+        IT-words
+      </button>
     </div>
   </div>
 
   <div v-else>
-    <div class="cards">
+    <div
+      v-if="!isGameCompleted"
+      class="cards"
+    >
       <BaseCard
         v-for="(card, index) in cards"
         :key="index"
@@ -159,15 +165,23 @@ provide('scoreKey', score)
       />
     </div>
     <div class="button-restart">
-      <BaseButton @click="restartGame">Начать заново</BaseButton>
       <BaseButton
-        v-if="cards.every((card) => card.status !== 'pending')"
+        v-if="
+          cards.every((card) => card.status !== 'pending' && !isGameCompleted)
+        "
         @click="learnMore"
         >УЧИТЬ ДАЛЬШЕ</BaseButton
       >
+
+      <div
+        v-if="isGameCompleted"
+        class="app"
+      >
+        <p>Все карточки угаданы!</p>
+        <BaseButton @click="restartGame">Начать заново</BaseButton>
+      </div>
     </div>
   </div>
-  <p>Выучено: {{ learnedCount }}</p>
 </template>
 
 <style scoped>
