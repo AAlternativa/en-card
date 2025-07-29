@@ -5,6 +5,7 @@ import prettier from 'eslint-config-prettier'
 export default [
   js.configs.recommended,
   ...vue.configs['flat/recommended'],
+
   prettier,
   {
     files: ['**/*.vue', '**/*.js'],
@@ -14,6 +15,9 @@ export default [
       globals: {
         fetch: 'readonly',
         console: 'readonly',
+        window: 'readonly',
+        speechSynthesis: 'readonly',
+        SpeechSynthesisUtterance: 'readonly',
       },
     },
     rules: {

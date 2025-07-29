@@ -66,6 +66,11 @@ async function learnMore() {
     card.state = 'closed'
   })
   loadCards()
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  })
 }
 
 async function restartGame() {
@@ -74,19 +79,39 @@ async function restartGame() {
   await loadCards(selectedLevel.value.toLowerCase())
 }
 
-// const learnedCount = computed(() => {
-//   return (
-//     wordMap[selectedLevel.value].length -
-//     remainingWords.value.filter((card) => card.status !== 'success').length
-//   )
-// })
-
 const isGameCompleted = computed(() => {
   return (
     remainingWords.value.length > 0 &&
     remainingWords.value.every((card) => card.status === 'success')
   )
 })
+
+// function speakWord(word) {
+//   const utterance = new SpeechSynthesisUtterance(word)
+//   utterance.lang = 'en-US'
+//   speechSynthesis.speak(utterance)
+//   console.log('Говорим:', word)
+// }
+
+function speakWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word)
+
+  // Получаем все доступные голоса
+  const voices = speechSynthesis.getVoices()
+
+  // Выбираем голос по имени (или языку)
+  const selectedVoice = voices.find(
+    (v) => v.name === 'Google US English' // ← можешь изменить!
+  )
+
+  // Назначаем голос
+  if (selectedVoice) {
+    utterance.voice = selectedVoice
+  }
+
+  utterance.lang = 'en-US'
+  speechSynthesis.speak(utterance)
+}
 
 provide('scoreKey', score)
 </script>
@@ -162,6 +187,7 @@ provide('scoreKey', score)
         @flip="card.state = 'opened'"
         @answer-yes="() => handleAnswer(card, true)"
         @answer-no="() => handleAnswer(card, false)"
+        @speak="() => speakWord(card.word)"
       />
     </div>
     <div class="button-restart">
@@ -195,12 +221,24 @@ provide('scoreKey', score)
 }
 
 .cards {
+  margin: 0 auto;
+  max-width: 1250px;
   display: flex;
   gap: 40px 10px;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: center;
   padding: 50px;
   margin-bottom: 80px;
+}
+
+@media (max-width: 610px) {
+  .cards {
+    flex-direction: column;
+    padding: 20px 10px;
+    align-items: center;
+    gap: 20px;
+  }
 }
 
 .button-restart {
@@ -211,7 +249,9 @@ provide('scoreKey', score)
 }
 
 .level-switcher {
+  padding: 20px;
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
 }
 
