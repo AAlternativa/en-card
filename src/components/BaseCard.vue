@@ -127,7 +127,7 @@ const {
   width: 200px;
   margin: 0 auto;
   padding: auto;
-  background-color: var(--color-btn-active);
+  background-color: #fffda0;
   display: flex;
   justify-content: center;
   align-items: center;
