@@ -1,5 +1,7 @@
 <script setup>
-const emit = defineEmits(['flip', 'answerYes', 'answerNo'])
+import IconVoice from '../icons/IconVoice.vue'
+
+const emit = defineEmits(['flip', 'answerYes', 'answerNo', 'speak'])
 
 const {
   numberCardValue = 1,
@@ -14,11 +16,24 @@ const {
   state: String,
   status: String,
 })
+
+function flipAndSpeak() {
+  emit('flip')
+  emit('speak')
+}
 </script>
 
 <template>
   <div class="base-card">
-    <span class="card-index">{{ numberCardValue }}</span>
+    <div class="card-index">
+      <span>{{ numberCardValue }}</span>
+      <button
+        class="card-index__btn-voice"
+        @click="$emit('speak')"
+      >
+        <IconVoice />
+      </button>
+    </div>
 
     <template v-if="state == 'closed'">
       <p class="card-word">
@@ -26,7 +41,7 @@ const {
       </p>
       <button
         class="card-btn"
-        @click="emit('flip')"
+        @click="flipAndSpeak"
       >
         Перевернуть
       </button>
@@ -110,6 +125,13 @@ const {
   font-size: 14px;
   font-weight: 500;
   color: var(--color-primary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-index__btn-voice {
+  border: none;
+  background-color: #ffffff00;
 }
 
 .card-word {
