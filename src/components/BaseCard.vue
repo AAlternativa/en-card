@@ -1,21 +1,15 @@
-<script setup>
-import IconVoice from '../icons/IconVoice.vue'
+<script setup lang="ts">
+import IconVoice from '@/icons/IconVoice.vue'
 
-const emit = defineEmits(['flip', 'answerYes', 'answerNo', 'speak'])
+defineProps<{
+  numberCardValue: number
+  cardWordValue: string
+  cardWordRuValue: string
+  state: 'opened' | 'closed'
+  status: 'pending' | 'success' | 'fail'
+}>()
 
-const {
-  numberCardValue = 1,
-  cardWordValue = 'Loading',
-  cardWordRuValue = 'Загрузка',
-  state = 'closed',
-  status = 'pending',
-} = defineProps({
-  numberCardValue: Number,
-  cardWordValue: String,
-  cardWordRuValue: String,
-  state: String,
-  status: String,
-})
+const emit = defineEmits(['flip', 'speak', 'answer-yes', 'answer-no'])
 
 function flipAndSpeak() {
   emit('flip')
@@ -29,16 +23,14 @@ function flipAndSpeak() {
       <span>{{ numberCardValue }}</span>
       <button
         class="card-index__btn-voice"
-        @click="$emit('speak')"
+        @click="emit('speak')"
       >
         <IconVoice />
       </button>
     </div>
 
-    <template v-if="state == 'closed'">
-      <p class="card-word">
-        {{ cardWordValue }}
-      </p>
+    <template v-if="state === 'closed'">
+      <p class="card-word">{{ cardWordValue }}</p>
       <button
         class="card-btn"
         @click="flipAndSpeak"
@@ -47,41 +39,31 @@ function flipAndSpeak() {
       </button>
     </template>
 
-    <template v-if="state == 'opened' && status == 'pending'">
+    <template v-else-if="state === 'opened' && status === 'pending'">
       <div class="card-word">
-        <p>
-          {{ cardWordValue }}
-        </p>
-        <p>
-          {{ cardWordRuValue }}
-        </p>
+        <p>{{ cardWordValue }}</p>
+        <p>{{ cardWordRuValue }}</p>
       </div>
-
       <div class="btns-true-false">
         <button
           class="btn-true"
-          @click="emit('answerYes')"
+          @click="emit('answer-yes')"
         >
           yes
         </button>
-
         <button
           class="btn-true"
-          @click="emit('answerNo')"
+          @click="emit('answer-no')"
         >
           no
         </button>
       </div>
     </template>
 
-    <template v-if="state == 'opened' && status == 'success'">
+    <template v-else-if="status === 'success'">
       <div class="card-word">
-        <p>
-          {{ cardWordValue }}
-        </p>
-        <p>
-          {{ cardWordRuValue }}
-        </p>
+        <p>{{ cardWordValue }}</p>
+        <p>{{ cardWordRuValue }}</p>
       </div>
       <div class="card-result">
         <span>✔️</span>
@@ -89,14 +71,10 @@ function flipAndSpeak() {
       </div>
     </template>
 
-    <template v-if="state == 'opened' && status == 'fail'">
+    <template v-else-if="status === 'fail'">
       <div class="card-word">
-        <p>
-          {{ cardWordValue }}
-        </p>
-        <p>
-          {{ cardWordRuValue }}
-        </p>
+        <p>{{ cardWordValue }}</p>
+        <p>{{ cardWordRuValue }}</p>
       </div>
       <div class="card-result">
         <span>❌</span>

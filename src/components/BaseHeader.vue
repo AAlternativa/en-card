@@ -1,8 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import Score from './Score.vue'
 
 const { selectedLevel } = defineProps({
-  selectedLevel: String,
+  selectedLevel: {
+    type: String,
+    required: true,
+  },
 })
 </script>
 

@@ -1,13 +1,14 @@
-<script setup>
-import { computed, inject, onMounted, ref } from 'vue'
+<script setup lang="ts">
+import type { Word, Card } from '../types/card'
+import { computed, inject, onMounted, Ref, ref } from 'vue'
 import BaseCard from './BaseCard.vue'
 import BaseButton from './BaseButton.vue'
 
-async function speakWord(word) {
+async function speakWord(word: string) {
   const utterance = new SpeechSynthesisUtterance(word)
 
   // Получаем все доступные голоса
-  const voices = speechSynthesis.getVoices()
+  const voices = window.speechSynthesis.getVoices()
 
   // Выбираем голос по имени (или языку)
   const selectedVoice = voices.find(
@@ -23,31 +24,34 @@ async function speakWord(word) {
   speechSynthesis.speak(utterance)
 } //озвучка
 
-const props = defineProps({
-  words: Array,
-  onRestart: Function,
-})
+const props = defineProps<{ words: Word[]; onRestart: () => void }>()
 
-const remainingWords = ref([])
-const cards = ref([])
-const score = inject('scoreKey')
+const remainingWords = ref<Card[]>([])
+const cards = ref<Card[]>([])
+const score = inject<Ref<number>>('scoreKey')!
 
 onMounted(() => {
   if (props.words.length > 0) {
-    remainingWords.value = [...props.words]
+    remainingWords.value = props.words.map((word) => ({
+      ...word,
+      status: 'pending',
+      state: 'closed',
+    }))
     const shuffled = [...remainingWords.value].sort(() => Math.random() - 0.5)
     cards.value = shuffled.slice(0, 20)
   }
 })
 
-function handleAnswer(card, isCorrect) {
+function handleAnswer(card: Card, isCorrect: boolean) {
   card.status = isCorrect ? 'success' : 'fail'
   score.value += isCorrect ? 1 : 0
 }
 
+const MAX_CARDS = 20
+
 async function loadCards() {
   const shuffled = [...remainingWords.value].sort(() => Math.random() - 0.5)
-  cards.value = shuffled.slice(0, 20)
+  cards.value = shuffled.slice(0, MAX_CARDS)
 }
 
 async function learnMore() {
