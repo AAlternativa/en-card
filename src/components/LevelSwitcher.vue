@@ -1,6 +1,9 @@
-<script setup>
+<script setup lang="ts">
 defineEmits(['select-level'])
-defineProps({ levels: Array, selectedLevel: String })
+const props = defineProps<{
+  levels: string[]
+  selectedLevel: string
+}>()
 </script>
 
 <template>

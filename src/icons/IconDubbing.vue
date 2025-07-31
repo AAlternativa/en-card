@@ -12,14 +12,3 @@
     />
   </svg>
 </template>
-
-<style scoped>
-.icon-voice {
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-.icon-voice:hover {
-  transform: scale(1.1);
-  fill: #007bff;
-}
-</style>
