@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { Word, Card } from '../types/card'
+import type { Word, Card } from '@/types/card'
 import { computed, inject, onMounted, Ref, ref } from 'vue'
-import BaseCard from './BaseCard.vue'
-import BaseButton from './BaseButton.vue'
+import BaseCard from '@/components/BaseCard.vue'
+import BaseButton from '@/components/BaseButton.vue'
+import { remainingWords, selectedLevel, score } from '@/composables/useGameData'
 
 async function speakWord(word: string) {
   const utterance = new SpeechSynthesisUtterance(word)
@@ -24,22 +25,60 @@ async function speakWord(word: string) {
   speechSynthesis.speak(utterance)
 } //озвучка
 
-const props = defineProps<{ words: Word[]; onRestart: () => void }>()
+const props = defineProps<{
+  words: Word[]
+  onRestart: () => void
+  level: string
+}>()
 
-const remainingWords = ref<Card[]>([])
+console.log('LEVEL →', props.level)
+
+// const remainingWords = ref<Card[]>([])
 const cards = ref<Card[]>([])
-const score = inject<Ref<number>>('scoreKey')!
+// const score = inject<Ref<number>>('scoreKey')!
 
-onMounted(() => {
-  if (props.words.length > 0) {
-    remainingWords.value = props.words.map((word) => ({
-      ...word,
-      status: 'pending',
-      state: 'closed',
-    }))
-    const shuffled = [...remainingWords.value].sort(() => Math.random() - 0.5)
-    cards.value = shuffled.slice(0, 20)
+// onMounted(() => {
+//   if (props.words.length > 0) {
+//     remainingWords.value = props.words.map((word) => ({
+//       ...word,
+//       status: 'pending',
+//       state: 'closed',
+//     }))
+//     const shuffled = [...remainingWords.value].sort(() => Math.random() - 0.5)
+//     cards.value = shuffled.slice(0, 20)
+//   }
+// })
+
+const levelToFileMap: Record<string, () => Promise<{ default: Word[] }>> = {
+  A2: () => import('@/data/a2-words.json'),
+  B1: () => import('@/data/b1-words.json'),
+  B2: () => import('@/data/b2-words.json'),
+  C1: () => import('@/data/c1-words.json'),
+  IT: () => import('@/data/ITwords.json'),
+  Clen: () => import('@/data/Clen.json'),
+}
+
+onMounted(async () => {
+  const loader = levelToFileMap[props.level]
+
+  if (!loader) {
+    console.error('Нет словаря для уровня:', props.level)
+    return
   }
+
+  const { default: wordList } = await loader()
+
+  selectedLevel.value = props.level
+
+  remainingWords.value = wordList.map((word) => ({
+    ...word,
+    status: 'pending',
+    state: 'closed',
+  }))
+
+  cards.value = [...remainingWords.value]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 20)
 })
 
 function handleAnswer(card: Card, isCorrect: boolean) {
