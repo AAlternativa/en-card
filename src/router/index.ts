@@ -1,15 +1,26 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import MainLayout from '@/layouts/MainLayout.vue'
+import StartPage from '@/pages/StartPage.vue'
+import CardsPage from '@/pages/CardsPage.vue'
+
 const routes = [
   {
     path: '/',
-    component: () => import('@/pages/StartPage.vue'),
-  },
-  {
-    path: '/cards/:level',
-    name: 'cards',
-    component: () => import('@/pages/CardsPage.vue'),
-    props: true, // ← обязательно! Это нужно, чтобы :level стал prop-ом
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: 'start',
+        component: StartPage,
+      },
+      {
+        path: 'cards/:level',
+        name: 'cards',
+        component: CardsPage,
+        props: true,
+      },
+    ],
   },
 ]
 

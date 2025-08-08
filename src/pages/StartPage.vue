@@ -2,7 +2,6 @@
 import { provide } from 'vue'
 import { useRouter } from 'vue-router'
 import BaseButton from '@/components/BaseButton.vue'
-import BaseHeader from '@/components/BaseHeader.vue'
 import LevelSwitcher from '@/components/LevelSwitcher.vue'
 import { remainingWords, selectedLevel, score } from '@/composables/useGameData'
 import type { Word } from '@/types/card'
@@ -64,8 +63,6 @@ function startGame() {
 </script>
 
 <template>
-  <BaseHeader :selected-level="selectedLevel" />
-
   <div class="app">
     <BaseButton
       :disabled="!selectedLevel"

@@ -52,7 +52,7 @@ function flipAndSpeak() {
           yes
         </button>
         <button
-          class="btn-true"
+          class="btn-false"
           @click="emit('answer-no')"
         >
           no
@@ -147,7 +147,21 @@ function flipAndSpeak() {
   width: 70px;
   margin: 0 auto;
   padding: auto;
-  background-color: var(--color-btn-active);
+  background-color: #02ff02;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.btn-false {
+  border: none;
+  font-size: 16px;
+  height: 30px;
+  width: 70px;
+  margin: 0 auto;
+  padding: auto;
+  background-color: #ff1f32;
   display: flex;
   justify-content: center;
   align-items: center;
