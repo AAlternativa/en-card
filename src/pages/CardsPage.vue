@@ -4,6 +4,7 @@ import { computed, inject, onMounted, Ref, ref } from 'vue'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import { remainingWords, selectedLevel, score } from '@/composables/useGameData'
+import router from '@/router'
 
 async function speakWord(word: string) {
   const utterance = new SpeechSynthesisUtterance(word)
@@ -26,28 +27,14 @@ async function speakWord(word: string) {
 } //озвучка
 
 const props = defineProps<{
-  words: Word[]
-  onRestart: () => void
+  // words: Word[]
+  // onRestart: () => void
   level: string
 }>()
 
 console.log('LEVEL →', props.level)
 
-// const remainingWords = ref<Card[]>([])
 const cards = ref<Card[]>([])
-// const score = inject<Ref<number>>('scoreKey')!
-
-// onMounted(() => {
-//   if (props.words.length > 0) {
-//     remainingWords.value = props.words.map((word) => ({
-//       ...word,
-//       status: 'pending',
-//       state: 'closed',
-//     }))
-//     const shuffled = [...remainingWords.value].sort(() => Math.random() - 0.5)
-//     cards.value = shuffled.slice(0, 20)
-//   }
-// })
 
 const levelToFileMap: Record<string, () => Promise<{ default: Word[] }>> = {
   A2: () => import('@/data/a2-words.json'),
@@ -111,7 +98,8 @@ async function learnMore() {
 
 async function restartGame() {
   score.value = 0
-  props.onRestart()
+  // props.onRestart()
+  router.push({ name: 'start' })
 }
 
 const isGameCompleted = computed(() => {
@@ -142,13 +130,23 @@ const isGameCompleted = computed(() => {
     />
   </div>
   <div class="button-restart">
-    <BaseButton
-      v-if="
-        cards.every((card) => card.status !== 'pending' && !isGameCompleted)
-      "
-      @click="learnMore"
-      >УЧИТЬ ДАЛЬШЕ</BaseButton
-    >
+    <div class="button-end">
+      <BaseButton
+        v-if="
+          cards.every((card) => card.status !== 'pending' && !isGameCompleted)
+        "
+        @click="learnMore"
+        >Учить дальше</BaseButton
+      >
+
+      <div
+        v-if="!isGameCompleted"
+        class="button-end"
+      >
+        <BaseButton @click="restartGame">Закончить</BaseButton>
+        <p>Прогресс не сохранится</p>
+      </div>
+    </div>
 
     <div
       v-if="isGameCompleted"
@@ -212,5 +210,12 @@ const isGameCompleted = computed(() => {
   justify-content: center;
   align-items: center;
   margin-bottom: 100px;
+}
+
+.button-end {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
 }
 </style>

@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { inject, provide } from 'vue'
 import IconHeart from '../icons/IconHeart.vue'
-
-const heartValue = inject('scoreKey')
+import { score } from '@/composables/useGameData'
 </script>
 
 <template>
   <div class="word-header__progress">
-    <span>{{ heartValue }}/100</span>
+    <span>{{ score }}/100</span>
     <IconHeart />
   </div>
 </template>

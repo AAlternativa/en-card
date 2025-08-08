@@ -18,4 +18,8 @@
   padding: 16px 10px;
   cursor: pointer;
 }
+
+.button:hover {
+  background-color: #5855ff;
+}
 </style>
